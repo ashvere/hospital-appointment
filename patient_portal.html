@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hospital</title>
+  <link rel="stylesheet" href="patient_styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo-container">
+        <img src="logo.png" alt="Hospital Logo" class="logo" />
+        <h1>Hospital</h1>
+      </div>
+      <nav class="nav-desktop" aria-label="Primary navigation">
+        <a href="#" class="nav-link active" data-page="dashboard" tabindex="0">Dashboard</a>
+        <a href="#" class="nav-link" data-page="find-doctor" tabindex="0">Find a Doctor</a>
+        <a href="#" class="nav-link" data-page="appointments" tabindex="0">My Appointments</a>
+        <a href="#" class="nav-link" data-page="contact" tabindex="0">Contact</a>
+        <a href="#" class="nav-link" data-page="account" tabindex="0">Account</a>
+        <div class="dark-mode-toggle-wrapper" title="Toggle dark mode">
+          <input type="checkbox" id="dark-mode-toggle" aria-label="Toggle dark mode" />
+          <label for="dark-mode-toggle" class="dark-mode-label">
+            <span class="sun" aria-hidden="true">☀️</span>
+            <span class="moon" aria-hidden="true">🌙</span>
+            <span class="toggle-ball"></span>
+          </label>
+        </div>
+        <button id="logout-btn" class="btn btn-outline">Logout</button>
+      </nav>
+      <button class="nav-icon" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+    <nav id="mobile-menu" class="nav-mobile" aria-label="Mobile navigation" hidden>
+      <a href="#" class="nav-link active" data-page="dashboard">Dashboard</a>
+      <a href="#" class="nav-link" data-page="find-doctor">Find a Doctor</a>
+      <a href="#" class="nav-link" data-page="appointments">My Appointments</a>
+      <a href="#" class="nav-link" data-page="contact">Contact</a>
+      <a href="#" class="nav-link" data-page="account">Account</a>
+      <div class="dark-mode-toggle-wrapper mobile" title="Toggle dark mode">
+        <input type="checkbox" id="dark-mode-toggle-mobile" aria-label="Toggle dark mode" />
+        <label for="dark-mode-toggle-mobile" class="dark-mode-label">
+          <span class="sun" aria-hidden="true">☀️</span>
+          <span class="moon" aria-hidden="true">🌙</span>
+          <span class="toggle-ball"></span>
+        </label>
+      </div>
+      <button id="logout-btn-mobile" class="btn btn-outline">Logout</button>
+    </nav>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <!-- Login/Signup Page -->
+    <section id="auth" class="page active">
+      <div class="container">
+        <div class="auth-container">
+          <div class="auth-form-container">
+            <div class="auth-tabs">
+              <button class="auth-tab active" data-tab="login">Login</button>
+              <button class="auth-tab" data-tab="signup">Sign Up</button>
+            </div>
+            
+            <form id="login-form" class="auth-form active">
+              <h2>Welcome Back</h2>
+              <div class="form-group">
+                <label for="login-email" class="form-label">Email Address</label>
+                <input type="email" id="login-email" class="form-input" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="login-password" class="form-label">Password</label>
+                <input type="password" id="login-password" class="form-input" required>
+              </div>
+              
+              <div class="form-group remember-forgot">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="remember-me">
+                  <span class="checkmark"></span>
+                  Remember me
+                </label>
+                <a href="#" class="forgot-password">Forgot Password?</a>
+              </div>
+              
+              <button type="submit" class="btn btn-primary auth-btn">Login</button>
+              
+              <div class="auth-divider">
+                <span>Or continue with</span>
+              </div>
+              
+              <div class="social-auth">
+                <button type="button" class="btn btn-social google-btn">
+                  <i class="fab fa-google"></i> Google
+                </button>
+                <button type="button" class="btn btn-social facebook-btn">
+                  <i class="fab fa-facebook-f"></i> Facebook
+                </button>
+              </div>
+            </form>
+            
+            <form id="signup-form" class="auth-form">
+              <h2>Create Account</h2>
+              <div class="form-group">
+                <label for="signup-name" class="form-label">Full Name</label>
+                <input type="text" id="signup-name" class="form-input" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="signup-email" class="form-label">Email Address</label>
+                <input type="email" id="signup-email" class="form-input" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="signup-password" class="form-label">Password</label>
+                <input type="password" id="signup-password" class="form-input" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="signup-confirm-password" class="form-label">Confirm Password</label>
+                <input type="password" id="signup-confirm-password" class="form-input" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="terms-agree" required>
+                  <span class="checkmark"></span>
+                  I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                </label>
+              </div>
+              
+              <button type="submit" class="btn btn-primary auth-btn">Create Account</button>
+              
+              <div class="auth-divider">
+                <span>Or continue with</span>
+              </div>
+              
+              <div class="social-auth">
+                <button type="button" class="btn btn-social google-btn">
+                  <i class="fab fa-google"></i> Google
+                </button>
+                <button type="button" class="btn btn-social facebook-btn">
+                  <i class="fab fa-facebook-f"></i> Facebook
+                </button>
+              </div>
+            </form>
+          </div>
+          
+          <div class="auth-welcome">
+            <div class="welcome-content">
+              <h2>Hospital Appointment System</h2>
+              <p>Manage your healthcare appointments with ease. Book, reschedule, or cancel appointments anytime from anywhere.</p>
+              <div class="features-list">
+                <div class="feature-item">
+                  <i class="fas fa-calendar-check"></i>
+                  <span>Easy Appointment Booking</span>
+                </div>
+                <div class="feature-item">
+                  <i class="fas fa-bell"></i>
+                  <span>Reminder Notifications</span>
+                </div>
+                <div class="feature-item">
+                  <i class="fas fa-file-medical"></i>
+                  <span>Medical Records Access</span>
+                </div>
+                <div class="feature-item">
+                  <i class="fas fa-user-md"></i>
+                  <span>Doctor Profiles & Reviews</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Dashboard Page -->
+    <section id="dashboard" class="page">
+      <div class="container">
+        <h1>Dashboard</h1>
+        <div class="dashboard-grid">
+          <div class="dashboard-card animated">
+            <h3>Upcoming Appointments</h3>
+            <ul class="appointment-list">
+              <li class="appointment-item">
+                <div class="appointment-info">
+                  <div class="appointment-time">Today, 2:30 PM</div>
+                  <div>Dr. Mina Myoui - Cardiology</div>
+                </div>
+                <div class="appointment-actions">
+                  <button class="btn btn-outline">Cancel</button>
+                </div>
+              </li>
+              <li class="appointment-item">
+                <div class="appointment-info">
+                  <div class="appointment-time">Tomorrow, 10:00 AM</div>
+                  <div>Dr. Fahlada Thananusak - Dermatology</div>
+                </div>
+                <div class="appointment-actions">
+                  <button class="btn btn-outline">Cancel</button>
+                </div>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="dashboard-card animated" style="animation-delay: 0.2s;">
+            <h3>Quick Actions</h3>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <button class="btn btn-primary float" id="book-appointment-btn">Book New Appointment</button>
+              <button class="btn btn-outline">View Medical Records</button>
+              <button class="btn btn-outline">Request Prescription</button>
+            </div>
+          </div>
+          
+          <div class="dashboard-card animated" style="animation-delay: 0.4s;">
+            <h3>Health Summary</h3>
+            <div style="text-align: center;">
+              <div style="font-size: 2rem; color: #c41e3a; margin: 1rem 0;">72%</div>
+              <div>Overall Health Score</div>
+              <div style="height: 10px; background: #eee; border-radius: 5px; margin: 1rem 0;">
+                <div style="width: 72%; height: 100%; background: #c41e3a; border-radius: 5px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="dashboard-card animated" style="animation-delay: 0.6s;">
+          <h3>Recent Activities</h3>
+          <ul class="appointment-list">
+            <li class="appointment-item">
+              <div class="appointment-info">
+                <div>Appointment with Dr. Trakulwipatkul confirmed</div>
+                <div style="font-size: 0.875rem; color: #666;">2 days ago</div>
+              </div>
+            </li>
+            <li class="appointment-item">
+              <div class="appointment-info">
+                <div>Medical records updated</div>
+                <div style="font-size: 0.875rem; color: #666;">5 days ago</div>
+              </div>
+            </li>
+            <li class="appointment-item">
+              <div class="appointment-info">
+                <div>Prescription refill requested</div>
+                <div style="font-size: 0.875rem; color: #666;">1 week ago</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Find Doctor Page -->
+    <section id="find-doctor" class="page">
+      <div class="container">
+        <h1>Find a Doctor</h1>
+        
+        <div class="search-container">
+          <div class="search-box">
+            <input type="text" class="search-input" placeholder="Search for doctors, specialties, or conditions">
+            <button class="btn btn-primary">Search</button>
+          </div>
+          
+          <div class="filters">
+            <select class="filter-select">
+              <option>All Specialties</option>
+              <option>Cardiology</option>
+              <option>Dermatology</option>
+              <option>Neurology</option>
+              <option>Pediatrics</option>
+            </select>
+            
+            <select class="filter-select">
+              <option>All Locations</option>
+              <option>Main Campus</option>
+              <option>Pototan Campus</option>
+              <option>Janiuay Campus</option>
+            </select>
+            
+            <select class="filter-select">
+              <option>Any Availability</option>
+              <option>Today</option>
+              <option>This Week</option>
+              <option>Next Week</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="doctors-grid">
+          <div class="doctor-card animated">
+            <div class="doctor-image">
+              <i class="fas fa-user-md"></i>
+            </div>
+            <div class="doctor-info">
+              <h3 class="doctor-name">Dr. Mina Myoui</h3>
+              <div class="doctor-specialty">Cardiology</div>
+              <div class="doctor-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <span>4.5 (128 reviews)</span>
+              </div>
+              <p>Board-certified cardiologist with over 15 years of experience. Specializes in heart disease prevention and treatment.</p>
+              <button class="btn btn-primary book-doctor-btn" data-doctor-id="1">Book Appointment</button>
+            </div>
+          </div>
+          
+          <div class="doctor-card animated" style="animation-delay: 0.2s;">
+            <div class="doctor-image">
+              <i class="fas fa-user-md"></i>
+            </div>
+            <div class="doctor-info">
+              <h3 class="doctor-name">Dr. Fahlada Thananusak</h3>
+              <div class="doctor-specialty">Dermatology</div>
+              <div class="doctor-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <span>4.8 (92 reviews)</span>
+              </div>
+              <p>Specializes in medical and cosmetic dermatology treatments. Expert in skin cancer detection and treatment.</p>
+              <button class="btn btn-primary book-doctor-btn" data-doctor-id="2">Book Appointment</button>
+            </div>
+          </div>
+          
+          <div class="doctor-card animated" style="animation-delay: 0.4s;">
+            <div class="doctor-image">
+              <i class="fas fa-user-md"></i>
+            </div>
+            <div class="doctor-info">
+              <h3 class="doctor-name">Dr. Cherran Trakulwipatkul</h3>
+              <div class="doctor-specialty">Neurology</div>
+              <div class="doctor-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+                <span>4.2 (76 reviews)</span>
+              </div>
+              <p>Expert in neurological disorders and treatment options. Specializes in migraine and epilepsy treatment.</p>
+              <button class="btn btn-primary book-doctor-btn" data-doctor-id="3">Book Appointment</button>
+            </div>
+          </div>
+          
+          <div class="doctor-card animated" style="animation-delay: 0.6s;">
+            <div class="doctor-image">
+              <i class="fas fa-user-md"></i>
+            </div>
+            <div class="doctor-info">
+              <h3 class="doctor-name">Dr. Baek Gang Hyeok</h3>
+              <div class="doctor-specialty">Pediatrics</div>
+              <div class="doctor-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <span>4.6 (215 reviews)</span>
+              </div>
+              <p>Pediatric specialist with focus on child development. Experienced in treating childhood illnesses and vaccinations.</p>
+              <button class="btn btn-primary book-doctor-btn" data-doctor-id="4">Book Appointment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Book Appointment</h2>
+          <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+          <div class="booking-doctor-info">
+            <h3 id="booking-doctor-name">Dr. Mina Myoui</h3>
+            <div id="booking-doctor-specialty">Cardiology</div>
+          </div>
+          
+          <form id="booking-form">
+            <div class="form-group">
+              <label for="booking-date" class="form-label">Appointment Date</label>
+              <input type="date" id="booking-date" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="booking-time" class="form-label">Appointment Time</label>
+              <select id="booking-time" class="form-input" required>
+                <option value="">Select a time</option>
+                <option value="09:00">09:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="13:00">01:00 PM</option>
+                <option value="14:00">02:00 PM</option>
+                <option value="15:00">03:00 PM</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="booking-reason" class="form-label">Reason for Visit</label>
+              <textarea id="booking-reason" class="form-textarea" placeholder="Please describe your symptoms or reason for appointment" required></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="booking-confirm" required>
+                <span class="checkmark"></span>
+                I confirm that I will arrive 15 minutes before my appointment time
+              </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Confirm Appointment</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Appointments Page -->
+    <section id="appointments" class="page">
+      <div class="container">
+        <h1>My Appointments</h1>
+        
+        <div class="appointments-container">
+          <div class="appointment-card animated">
+            <div class="appointment-details">
+              <h3>Dr. Mina Myoui - Cardiology</h3>
+              <p><strong>Date & Time:</strong> Today, 2:30 PM</p>
+              <p><strong>Location:</strong> Main Campus, Room 304</p>
+              <p><strong>Reason:</strong> Heart checkup and consultation</p>
+              <span class="appointment-status status-confirmed">Confirmed</span>
+            </div>
+            <div class="appointment-actions">
+              <button class="btn btn-outline">Reschedule</button>
+              <button class="btn btn-outline">Cancel</button>
+            </div>
+          </div>
+          
+          <div class="appointment-card animated" style="animation-delay: 0.2s;">
+            <div class="appointment-details">
+              <h3>Dr. Fahlada Thananusak - Dermatology</h3>
+              <p><strong>Date & Time:</strong> Tomorrow, 10:00 AM</p>
+              <p><strong>Location:</strong> Pototan Campus, Room 102</p>
+              <p><strong>Reason:</strong> Skin allergy examination</p>
+              <span class="appointment-status status-confirmed">Confirmed</span>
+            </div>
+            <div class="appointment-actions">
+              <button class="btn btn-outline">Reschedule</button>
+              <button class="btn btn-outline">Cancel</button>
+            </div>
+          </div>
+          
+          <div class="appointment-card animated" style="animation-delay: 0.4s;">
+            <div class="appointment-details">
+              <h3>Dr. Cherran Trakulwipatkul - Neurology</h3>
+              <p><strong>Date & Time:</strong> June 15, 3:45 PM</p>
+              <p><strong>Location:</strong> Main Campus, Room 205</p>
+              <p><strong>Reason:</strong> Migraine consultation</p>
+              <span class="appointment-status status-pending">Pending</span>
+            </div>
+            <div class="appointment-actions">
+              <button class="btn btn-outline">Reschedule</button>
+              <button class="btn btn-outline">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Contact Page -->
+    <section id="contact" class="page">
+      <div class="container">
+        <h1>Contact Us</h1>
+        
+        <div class="contact-container">
+          <div class="contact-info animated">
+            <h3>Get in Touch</h3>
+            <ul class="contact-details">
+              <li><i class="fas fa-map-marker-alt"></i> Brgy. Cauayan Pototan, Iloilo, Philippines</li>
+              <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+              <li><i class="fas fa-envelope"></i> contactus@hospital.com</li>
+              <li><i class="fas fa-clock"></i> Monday-Friday: 8am-8pm, Saturday: 9am-5pm</li>
+            </ul>
+            
+            <div style="margin-top: 2rem;">
+              <h3>Emergency Contacts</h3>
+              <ul class="contact-details">
+                <li><i class="fas fa-ambulance"></i> Emergency: (555) 911-HELP</li>
+                <li><i class="fas fa-first-aid"></i> Urgent Care: (555) 123-URGENT</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="contact-form animated" style="animation-delay: 0.2s;">
+            <h3>Send us a Message</h3>
+            <form id="contact-form">
+              <div class="form-group">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" id="name" class="form-input" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" id="email" class="form-input" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="subject" class="form-label">Subject</label>
+                <input type="text" id="subject" class="form-input" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="message" class="form-label">Message</label>
+                <textarea id="message" class="form-textarea" required></textarea>
+              </div>
+              
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Account Page -->
+    <section id="account" class="page">
+      <div class="container">
+        <h1>My Account</h1>
+        
+        <div class="account-container">
+          <div class="account-sidebar animated">
+            <ul class="account-menu">
+              <li><a href="#" class="active">Profile Information</a></li>
+              <li><a href="#">Medical History</a></li>
+              <li><a href="#">Insurance Details</a></li>
+              <li><a href="#">Security Settings</a></li>
+              <li><a href="#">Notification Preferences</a></li>
+            </ul>
+          </div>
+          
+          <div class="account-content animated" style="animation-delay: 0.2s;">
+            <div class="profile-header">
+              <div class="profile-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="profile-info">
+                <h2>Chou Tzuyu</h2>
+                <p>Member since: January 2024</p>
+              </div>
+            </div>
+            
+            <h3>Personal Information</h3>
+            <div class="profile-details">
+              <div class="detail-item">
+                <div class="detail-label">Full Name</div>
+                <div>Chou Huang Tzuyu</div>
+              </div>
+              
+              <div class="detail-item">
+                <div class="detail-label">Date of Birth</div>
+                <div>June 14, 1999</div>
+              </div>
+              
+              <div class="detail-item">
+                <div class="detail-label">Email Address</div>
+                <div>choutzuyu@gmail.com</div>
+              </div>
+              
+              <div class="detail-item">
+                <div class="detail-label">Phone Number</div>
+                <div>(+63) 9123-45678</div>
+              </div>
+              
+              <div class="detail-item">
+                <div class="detail-label">Address</div>
+                <div>Brgy. Malusgod Pototan, Iloilo, Philippines</div>
+              </div>
+              
+              <div class="detail-item">
+                <div class="detail-label">Emergency Contact</div>
+                <div>Huang Yen Ling - (555) 987-6543</div>
+              </div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+              <button class="btn btn-primary">Edit Profile</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-container">
+      &copy; 2025 Hospital. All rights reserved.
+    </div>
+  </footer>
+
+  <div id="notification" class="notification"></div>
+
+  <script src="patient_script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hospital Management System</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-header">
+      <div class="logo-container">
+        <img src="logo.png" alt="Hospital Logo" class="logo" />
+        <h1>Hospital Management System</h1>
+      </div>
+      <p>Select your role to continue</p>
+    </div>
+    <div class="login-options">
+      <div class="login-option" data-role="admin">
+        <i class="fas fa-user-shield"></i>
+        <h3>Administrator</h3>
+        <p>Manage appointments, doctors, and patients</p>
+        <button class="btn btn-primary" onclick="location.href='admins/admin_dashboard.html'">Login as Admin</button>
+      </div>
+      <div class="login-option" data-role="doctor">
+        <i class="fas fa-user-md"></i>
+        <h3>Doctor</h3>
+        <p>View appointments and manage patient records</p>
+        <button class="btn btn-primary" onclick="location.href='doctors/doctor_portal.html'">Login as Doctor</button>
+      </div>
+      <div class="login-option" data-role="patient">
+        <i class="fas fa-user-injured"></i>
+        <h3>Patient</h3>
+        <p>Book appointments and view medical history</p>
+        <button class="btn btn-primary" onclick="location.href='patients/patient_portal.html'">Login as Patient</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

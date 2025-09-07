@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>City Hospital - Doctor Portal</title>
+  <link rel="stylesheet" href="doctor_styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo-container">
+        <img src="logo.png" alt="Hospital Logo" class="logo" />
+        <h1>Doctor Portal</h1>
+      </div>
+      <nav class="nav-desktop" aria-label="Primary navigation">
+        <a href="#" class="nav-link active" data-page="doctor-dashboard" tabindex="0">Dashboard</a>
+        <a href="#" class="nav-link" data-page="appointment-requests" tabindex="0">Appointment Requests</a>
+        <a href="#" class="nav-link" data-page="my-schedule" tabindex="0">My Schedule</a>
+        <a href="#" class="nav-link" data-page="patient-records" tabindex="0">Patient Records</a>
+        <a href="#" class="nav-link" data-page="doctor-profile" tabindex="0">My Profile</a>
+        <div class="dark-mode-toggle-wrapper" title="Toggle dark mode">
+          <input type="checkbox" id="dark-mode-toggle" aria-label="Toggle dark mode" />
+          <label for="dark-mode-toggle" class="dark-mode-label">
+            <span class="sun" aria-hidden="true">☀️</span>
+            <span class="moon" aria-hidden="true">🌙</span>
+            <span class="toggle-ball"></span>
+          </label>
+        </div>
+        <button id="logout-btn" class="btn btn-outline">Logout</button>
+      </nav>
+      <button class="nav-icon" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+    <nav id="mobile-menu" class="nav-mobile" aria-label="Mobile navigation" hidden>
+      <a href="#" class="nav-link active" data-page="doctor-dashboard">Dashboard</a>
+      <a href="#" class="nav-link" data-page="appointment-requests">Appointment Requests</a>
+      <a href="#" class="nav-link" data-page="my-schedule">My Schedule</a>
+      <a href="#" class="nav-link" data-page="patient-records">Patient Records</a>
+      <a href="#" class="nav-link" data-page="doctor-profile">My Profile</a>
+      <div class="dark-mode-toggle-wrapper mobile" title="Toggle dark mode">
+        <input type="checkbox" id="dark-mode-toggle-mobile" aria-label="Toggle dark mode" />
+        <label for="dark-mode-toggle-mobile" class="dark-mode-label">
+          <span class="sun" aria-hidden="true">☀️</span>
+          <span class="moon" aria-hidden="true">🌙</span>
+          <span class="toggle-ball"></span>
+        </label>
+      </div>
+      <button id="logout-btn-mobile" class="btn btn-outline">Logout</button>
+    </nav>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <!-- Doctor Dashboard Page -->
+    <section id="doctor-dashboard" class="page active">
+      <div class="container">
+        <div class="dashboard-header">
+          <h1>Doctor Dashboard</h1>
+          <div class="doctor-welcome">
+            <div class="doctor-avatar">
+              <i class="fas fa-user-md"></i>
+            </div>
+            <div>
+              <h2>Welcome, Dr. Myoui</h2>
+              <p>Cardiology Department</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="dashboard-grid">
+          <div class="dashboard-card animated">
+            <h3><i class="fas fa-calendar-check"></i> Today's Appointments</h3>
+            <div class="stat-number">8</div>
+            <p>You have 8 appointments scheduled for today</p>
+            <button class="btn btn-primary" data-page="my-schedule">View Schedule</button>
+          </div>
+          
+          <div class="dashboard-card animated" style="animation-delay: 0.2s;">
+            <h3><i class="fas fa-clock"></i> Pending Requests</h3>
+            <div class="stat-number">5</div>
+            <p>5 appointment requests awaiting your approval</p>
+            <button class="btn btn-primary" data-page="appointment-requests">Review Requests</button>
+          </div>
+          
+          <div class="dashboard-card animated" style="animation-delay: 0.4s;">
+            <h3><i class="fas fa-user-injured"></i> Patient Visits</h3>
+            <div class="stat-number">142</div>
+            <p>Total patients this month</p>
+            <button class="btn btn-primary" data-page="patient-records">View Reports</button>
+          </div>
+        </div>
+        
+        <div class="dashboard-row">
+          <div class="dashboard-card">
+            <h3>Upcoming Appointments</h3>
+            <div class="appointments-list">
+              <div class="appointment-item" data-appointment-id="1001">
+                <div class="appointment-time">10:00 AM</div>
+                <div class="appointment-info">
+                  <h4>Chou Tzuyu</h4>
+                  <p>Follow-up consultation</p>
+                </div>
+                <div class="appointment-actions">
+                  <button class="btn btn-outline view-details-btn">Details</button>
+                  <button class="btn btn-outline cancel-appointment-btn">Cancel</button>
+                </div>
+              </div>
+              
+              <div class="appointment-item" data-appointment-id="1002">
+                <div class="appointment-time">11:30 AM</div>
+                <div class="appointment-info">
+                  <h4>Son Chaeyoung</h4>
+                  <p>New patient - Heart palpitations</p>
+                </div>
+                <div class="appointment-actions">
+                  <button class="btn btn-outline view-details-btn">Details</button>
+                  <button class="btn btn-outline cancel-appointment-btn">Cancel</button>
+                </div>
+              </div>
+              
+              <div class="appointment-item" data-appointment-id="1003">
+                <div class="appointment-time">2:15 PM</div>
+                <div class="appointment-info">
+                  <h4>Minatozaki Sana</h4>
+                  <p>ECG results review</p>
+                </div>
+                <div class="appointment-actions">
+                  <button class="btn btn-outline view-details-btn">Details</button>
+                  <button class="btn btn-outline cancel-appointment-btn">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="dashboard-card">
+            <h3>Quick Actions</h3>
+            <div class="quick-actions">
+              <button class="btn btn-primary" id="add-availability-btn"><i class="fas fa-plus"></i> Add Availability</button>
+              <button class="btn btn-outline" id="write-prescription-btn"><i class="fas fa-file-medical"></i> Write Prescription</button>
+              <button class="btn btn-outline" id="start-teleconsultation-btn"><i class="fas fa-stethoscope"></i> Start Teleconsultation</button>
+              <button class="btn btn-outline" id="view-reports-btn"><i class="fas fa-chart-line"></i> View Reports</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Appointment Requests Page -->
+    <section id="appointment-requests" class="page">
+      <div class="container">
+        <h1>Appointment Requests</h1>
+        
+        <div class="filters">
+          <select class="filter-select">
+            <option>All Requests</option>
+            <option>New Patients</option>
+            <option>Existing Patients</option>
+            <option>Urgent</option>
+          </select>
+          
+          <select class="filter-select">
+            <option>Any Date</option>
+            <option>Today</option>
+            <option>This Week</option>
+            <option>Next Week</option>
+          </select>
+        </div>
+        
+        <div class="requests-container">
+          <div class="request-card" data-request-id="2001">
+            <div class="request-info">
+              <h3>Im Nayeon</h3>
+              <p><strong>Reason:</strong> Chest pain and shortness of breath</p>
+              <p><strong>Preferred Date:</strong> Tomorrow, 10:00 AM</p>
+              <p><strong>Type:</strong> New Patient</p>
+              <span class="request-status status-urgent">Urgent</span>
+            </div>
+            <div class="request-actions">
+              <button class="btn btn-primary approve-btn">Approve</button>
+              <button class="btn btn-outline reschedule-btn">Reschedule</button>
+              <button class="btn btn-outline decline-btn">Decline</button>
+            </div>
+          </div>
+          
+          <div class="request-card" data-request-id="2002">
+            <div class="request-info">
+              <h3>Park Jihyo</h3>
+              <p><strong>Reason:</strong> Routine cardiac checkup</p>
+              <p><strong>Preferred Date:</strong> June 20, 2:30 PM</p>
+              <p><strong>Type:</strong> Existing Patient</p>
+              <span class="request-status status-new">New</span>
+            </div>
+            <div class="request-actions">
+              <button class="btn btn-primary approve-btn">Approve</button>
+              <button class="btn btn-outline reschedule-btn">Reschedule</button>
+              <button class="btn btn-outline decline-btn">Decline</button>
+            </div>
+          </div>
+          
+          <div class="request-card" data-request-id="2003">
+            <div class="request-info">
+              <h3>Kim Dahyun</h3>
+              <p><strong>Reason:</strong> Follow-up on medication</p>
+              <p><strong>Preferred Date:</strong> June 18, 4:00 PM</p>
+              <p><strong>Type:</strong> Existing Patient</p>
+              <span class="request-status status-new">New</span>
+            </div>
+            <div class="request-actions">
+              <button class="btn btn-primary approve-btn">Approve</button>
+              <button class="btn btn-outline reschedule-btn">Reschedule</button>
+              <button class="btn btn-outline decline-btn">Decline</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- My Schedule Page -->
+    <section id="my-schedule" class="page">
+      <div class="container">
+        <div class="schedule-header">
+          <h1>My Schedule</h1>
+          <div class="schedule-controls">
+            <button class="btn btn-outline prev-week-btn"><i class="fas fa-chevron-left"></i></button>
+            <span class="current-week">June 12 - June 18, 2023</span>
+            <button class="btn btn-outline next-week-btn"><i class="fas fa-chevron-right"></i></button>
+            <button class="btn btn-primary" id="add-blockout-btn"><i class="fas fa-plus"></i> Add Blockout</button>
+          </div>
+        </div>
+        
+        <div class="calendar-view">
+          <div class="calendar-header">
+            <div class="time-column">Time</div>
+            <div class="day-column">Mon<br>Jun 12</div>
+            <div class="day-column">Tue<br>Jun 13</div>
+            <div class="day-column">Wed<br>Jun 14</div>
+            <div class="day-column">Thu<br>Jun 15</div>
+            <div class="day-column">Fri<br>Jun 16</div>
+          </div>
+          
+          <div class="calendar-body">
+            <div class="time-slot">
+              <div class="time-label">8:00 AM</div>
+              <div class="day-cell"></div>
+              <div class="day-cell"></div>
+              <div class="day-cell appointment" data-appointment-id="1001">
+                <div class="appointment-badge">Chou Tzuyu</div>
+              </div>
+              <div class="day-cell"></div>
+              <div class="day-cell"></div>
+            </div>
+            
+            <div class="time-slot">
+              <div class="time-label">9:00 AM</div>
+              <div class="day-cell"></div>
+              <div class="day-cell appointment" data-appointment-id="1002">
+                <div class="appointment-badge">Son Chaeyoung</div>
+              </div>
+              <div class="day-cell"></div>
+              <div class="day-cell appointment" data-appointment-id="1004">
+                <div class="appointment-badge">Minatozaki Sana</div>
+              </div>
+              <div class="day-cell"></div>
+            </div>
+            
+            <div class="time-slot">
+              <div class="time-label">10:00 AM</div>
+              <div class="day-cell unavailable">
+                <div class="unavailable-badge">Surgery</div>
+              </div>
+              <div class="day-cell"></div>
+              <div class="day-cell"></div>
+              <div class="day-cell"></div>
+              <div class="day-cell"></div>
+            </div>
+            
+            <div class="time-slot">
+              <div class="time-label">11:00 AM</div>
+              <div class="day-cell unavailable">
+                <div class="unavailable-badge">Surgery</div>
+              </div>
+              <div class="day-cell"></div>
+              <div class="day-cell appointment" data-appointment-id="1005">
+                <div class="appointment-badge">Park Jihyo</div>
+              </div>
+              <div class="day-cell"></div>
+              <div class="day-cell"></div>
+            </div>
+            
+            <div class="time-slot">
+              <div class="time-label">12:00 PM</div>
+              <div class="day-cell unavailable">
+                <div class="unavailable-badge">Lunch</div>
+              </div>
+              <div class="day-cell unavailable">
+                <div class="unavailable-badge">Lunch</div>
+              </div>
+              <div class="day-cell unavailable">
+                <div class="unavailable-badge">Lunch</div>
+              </div>
+              <div class="day-cell unavailable">
+                <div class="unavailable-badge">Lunch</div>
+              </div>
+              <div class="day-cell unavailable">
+                <div class="unavailable-badge">Lunch</div>
+              </div>
+            </div>
+            
+            <div class="time-slot">
+              <div class="time-label">1:00 PM</div>
+              <div class="day-cell"></div>
+              <div class="day-cell appointment" data-appointment-id="1006">
+                <div class="appointment-badge">Im Nayeon</div>
+              </div>
+              <div class="day-cell"></div>
+              <div class="day-cell"></div>
+              <div class="day-cell"></div>
+            </div>
+            
+            <div class="time-slot">
+              <div class="time-label">2:00 PM</div>
+              <div class="day-cell"></div>
+              <div class="day-cell"></div>
+              <div class="day-cell appointment" data-appointment-id="1007">
+                <div class="appointment-badge">Kim Dahyun</div>
+              </div>
+              <div class="day-cell"></div>
+              <div class="day-cell"></div>
+            </div>
+            
+            <div class="time-slot">
+              <div class="time-label">3:00 PM</div>
+              <div class="day-cell"></div>
+              <div class="day-cell"></div>
+              <div class="day-cell"></div>
+              <div class="day-cell"></div>
+              <div class="day-cell unavailable">
+                <div class="unavailable-badge">Conference</div>
+              </div>
+            </div>
+            
+            <div class="time-slot">
+              <div class="time-label">4:00 PM</div>
+              <div class="day-cell"></div>
+              <div class="day-cell"></div>
+              <div class="day-cell"></div>
+              <div class="day-cell"></div>
+              <div class="day-cell unavailable">
+                <div class="unavailable-badge">Conference</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Patient Records Page -->
+    <section id="patient-records" class="page">
+      <div class="container">
+        <h1>Patient Records</h1>
+        
+        <div class="search-container">
+          <div class="search-box">
+            <input type="text" class="search-input" placeholder="Search patients by name, ID, or condition">
+            <button class="btn btn-primary">Search</button>
+          </div>
+        </div>
+        
+        <div class="patients-container">
+          <div class="patient-card" data-patient-id="3001">
+            <div class="patient-header">
+              <div class="patient-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="patient-info">
+                <h3>Chou Tzuyu</h3>
+                <p>ID: P12345 • Age: 28 • Last visit: June 10, 2023</p>
+              </div>
+            </div>
+            <div class="patient-details">
+              <div class="detail-item">
+                <span class="detail-label">Condition:</span>
+                <span>Hypertension, Coronary Artery Disease</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Medications:</span>
+                <span>Lisinopril 10mg, Atorvastatin 20mg, Aspirin 81mg</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Next Appointment:</span>
+                <span>June 14, 2023 at 8:00 AM</span>
+              </div>
+            </div>
+            <div class="patient-actions">
+              <button class="btn btn-outline view-history-btn">View Full History</button>
+              <button class="btn btn-primary add-notes-btn">Add Notes</button>
+              <button class="btn btn-primary write-prescription-btn">Write Prescription</button>
+            </div>
+          </div>
+          
+          <div class="patient-card" data-patient-id="3002">
+            <div class="patient-header">
+              <div class="patient-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="patient-info">
+                <h3>Son Chaeyoung</h3>
+                <p>ID: P12346 • Age: 25 • Last visit: June 5, 2023</p>
+              </div>
+            </div>
+            <div class="patient-details">
+              <div class="detail-item">
+                <span class="detail-label">Condition:</span>
+                <span>Heart Palpitations, Mitral Valve Prolapse</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Medications:</span>
+                <span>Metoprolol 25mg, Magnesium Supplement</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Next Appointment:</span>
+                <span>June 13, 2023 at 11:30 AM</span>
+              </div>
+            </div>
+            <div class="patient-actions">
+              <button class="btn btn-outline view-history-btn">View Full History</button>
+              <button class="btn btn-primary add-notes-btn">Add Notes</button>
+              <button class="btn btn-primary write-prescription-btn">Write Prescription</button>
+            </div>
+          </div>
+
+          <div class="patient-card" data-patient-id="3003">
+            <div class="patient-header">
+              <div class="patient-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="patient-info">
+                <h3>Minatozaki Sana</h3>
+                <p>ID: P12347 • Age: 30 • Last visit: June 8, 2023</p>
+              </div>
+            </div>
+            <div class="patient-details">
+              <div class="detail-item">
+                <span class="detail-label">Condition:</span>
+                <span>Arrhythmia, High Cholesterol</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Medications:</span>
+                <span>Amiodarone 200mg, Rosuvastatin 10mg</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Next Appointment:</span>
+                <span>June 15, 2023 at 2:15 PM</span>
+              </div>
+            </div>
+            <div class="patient-actions">
+              <button class="btn btn-outline view-history-btn">View Full History</button>
+              <button class="btn btn-primary add-notes-btn">Add Notes</button>
+              <button class="btn btn-primary write-prescription-btn">Write Prescription</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Doctor Profile Page -->
+    <section id="doctor-profile" class="page">
+      <div class="container">
+        <h1>My Profile</h1>
+        
+        <div class="profile-container">
+          <div class="profile-sidebar">
+            <div class="profile-card">
+              <div class="profile-avatar-large">
+                <i class="fas fa-user-md"></i>
+              </div>
+              <h2>Dr. Mina Myoui</h2>
+              <p>Cardiologist</p>
+              <p>MD, FACC</p>
+              <div class="profile-stats">
+                <div class="stat">
+                  <div class="stat-number">12</div>
+                  <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-number">1,240</div>
+                  <div class="stat-label">Patients Treated</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="profile-content">
+            <div class="profile-section">
+              <h3>Professional Information</h3>
+              <div class="info-grid">
+                <div class="info-item">
+                  <label>Specialization</label>
+                  <p>Cardiology</p>
+                </div>
+                <div class="info-item">
+                  <label>Department</label>
+                  <p>Cardiology</p>
+                </div>
+                <div class="info-item">
+                  <label>Medical License</label>
+                  <p>MED123456789</p>
+                </div>
+                <div class="info-item">
+                  <label>Years of Experience</label>
+                  <p>12</p>
+                </div>
+                <div class="info-item">
+                  <label>Education</label>
+                  <p>MD - Harvard Medical School</p>
+                </div>
+                <div class="info-item">
+                  <label>Board Certification</label>
+                  <p>European Board of Cardiology</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="profile-section">
+              <h3>Contact Information</h3>
+              <div class="info-grid">
+                <div class="info-item">
+                  <label>Email</label>
+                  <p>minamyoui@hospital.com</p>
+                </div>
+                <div class="info-item">
+                  <label>Phone</label>
+                  <p>(555) 123-4567</p>
+                </div>
+                <div class="info-item">
+                  <label>Office</label>
+                  <p>Main Building, Room 304</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="profile-section">
+              <h3>Working Hours</h3>
+              <div class="schedule-table">
+                <div class="schedule-row">
+                  <div class="day">Monday</div>
+                  <div class="hours">8:00 AM - 5:00 PM</div>
+                </div>
+                <div class="schedule-row">
+                  <div class="day">Tuesday</div>
+                  <div class="hours">8:00 AM - 5:00 PM</div>
+                </div>
+                <div class="schedule-row">
+                  <div class="day">Wednesday</div>
+                  <div class="hours">8:00 AM - 5:00 PM</div>
+                </div>
+                <div class="schedule-row">
+                  <div class="day">Thursday</div>
+                  <div class="hours">8:00 AM - 5:00 PM</div>
+                </div>
+                <div class="schedule-row">
+                  <div class="day">Friday</div>
+                  <div class="hours">8:00 AM - 3:00 PM</div>
+                </div>
+                <div class="schedule-row">
+                  <div class="day">Saturday</div>
+                  <div class="hours">Not available</div>
+                </div>
+                <div class="schedule-row">
+                  <div class="day">Sunday</div>
+                  <div class="hours">Not available</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="profile-actions">
+              <button class="btn btn-primary">Edit Profile</button>
+              <button class="btn btn-outline">Change Password</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-container">
+      &copy; 2025 Hospital. Doctor Portal v1.0
+    </div>
+  </footer>
+
+  <!-- Prescription Modal -->
+  <div id="prescription-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Write Prescription</h2>
+        <span class="close-modal">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="patient-info">
+          <h3>Patient: <span id="prescription-patient-name"></span></h3>
+        </div>
+        <form id="prescription-form">
+          <div id="prescription-items">
+            <!-- Prescription items will be added here dynamically -->
+          </div>
+          <button type="button" id="add-prescription-item" class="btn btn-outline" style="margin-bottom: 1.5rem;">
+            <i class="fas fa-plus"></i> Add Another Medication
+          </button>
+          <div class="form-group">
+            <label for="prescription-instructions" class="form-label">Additional Instructions</label>
+            <textarea id="prescription-instructions" class="form-textarea" placeholder="Enter any additional instructions for the patient"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline close-modal-btn">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Prescription</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cancel Appointment Modal -->
+  <div id="cancel-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Cancel Appointment</h2>
+        <span class="close-modal">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="patient-info">
+          <h3>Patient: <span id="cancel-patient-name"></span></h3>
+          <p>Appointment Time: <span id="cancel-appointment-time"></span></p>
+        </div>
+        <form id="cancel-form">
+          <input type="hidden" id="cancel-appointment-id">
+          <div class="form-group">
+            <label for="cancel-reason" class="form-label">Reason for Cancellation</label>
+            <textarea id="cancel-reason" class="form-textarea" placeholder="Please provide a reason for cancelling this appointment" required></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline close-modal-btn">Cancel</button>
+            <button type="submit" class="btn btn-primary">Confirm Cancellation</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reschedule Modal -->
+  <div id="reschedule-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Reschedule Appointment</h2>
+        <span class="close-modal">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="reschedule-details">
+          <p><strong>Patient:</strong> <span id="reschedule-patient-name"></span></p>
+          <p><strong>Current Appointment:</strong> <span id="reschedule-current-date"></span></p>
+        </div>
+        <form id="reschedule-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reschedule-date" class="form-label">New Date</label>
+              <input type="date" id="reschedule-date" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label for="reschedule-time" class="form-label">New Time</label>
+              <select id="reschedule-time" class="form-select" required>
+                <option value="">Select Time</option>
+                <option value="09:00">09:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="13:00">01:00 PM</option>
+                <option value="14:00">02:00 PM</option>
+                <option value="15:00">03:00 PM</option>
+                <option value="16:00">04:00 PM</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reschedule-reason" class="form-label">Reason for Rescheduling (Optional)</label>
+            <textarea id="reschedule-reason" class="form-textarea" placeholder="Please provide a reason for rescheduling"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline close-modal-btn">Cancel</button>
+            <button type="submit" class="btn btn-primary">Reschedule Appointment</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm Appointment Modal -->
+  <div id="confirm-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Confirm Appointment</h2>
+        <span class="close-modal">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="confirm-details">
+          <div class="confirm-icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <h3>Confirm Appointment</h3>
+          <p>Please confirm the appointment with <strong id="confirm-patient-name"></strong></p>
+          <p>Scheduled for: <strong id="confirm-appointment-time"></strong></p>
+        </div>
+        <form id="confirm-form">
+          <div class="form-group">
+            <label for="confirm-notes" class="form-label">Additional Notes (Optional)</label>
+            <textarea id="confirm-notes" class="form-textarea" placeholder="Add any additional notes for this appointment"></textarea>
+          </div>
+          <div class="confirm-actions">
+            <button type="button" class="btn btn-outline close-modal-btn">Cancel</button>
+            <button type="submit" class="btn btn-primary">Confirm Appointment</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="notification" class="notification"></div>
+
+  <script src="doctor_script.js"></script>
+</body>
+</html>

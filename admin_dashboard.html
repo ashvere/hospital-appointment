@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hospital - Admin Dashboard</title>
+  <link rel="stylesheet" href="admin_styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo-container">
+        <img src="logo.png" alt="Hospital Logo" class="logo" />
+        <h1>Admin Dashboard</h1>
+      </div>
+      <nav class="nav-desktop" aria-label="Primary navigation">
+        <a href="#" class="nav-link active" data-page="daily-appointments" tabindex="0">Daily Appointments</a>
+        <a href="#" class="nav-link" data-page="doctors-management" tabindex="0">Doctors</a>
+        <a href="#" class="nav-link" data-page="patients-management" tabindex="0">Patients</a>
+        <a href="#" class="nav-link" data-page="reports" tabindex="0">Reports</a>
+        <a href="#" class="nav-link" data-page="system-settings" tabindex="0">Settings</a>
+        <div class="dark-mode-toggle-wrapper" title="Toggle dark mode">
+          <input type="checkbox" id="dark-mode-toggle" aria-label="Toggle dark mode" />
+          <label for="dark-mode-toggle" class="dark-mode-label">
+            <span class="sun" aria-hidden="true">☀️</span>
+            <span class="moon" aria-hidden="true">🌙</span>
+            <span class="toggle-ball"></span>
+          </label>
+        </div>
+        <div class="admin-info">
+          <div class="admin-avatar">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <div class="admin-details">
+            <span class="admin-name">Admin User</span>
+            <span class="admin-role">System Administrator</span>
+          </div>
+        </div>
+        <button id="logout-btn" class="btn btn-outline">Logout</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <!-- Daily Appointments Page -->
+    <section id="daily-appointments" class="page active">
+      <div class="container">
+        <div class="dashboard-header">
+          <h1>Daily Appointments</h1>
+          <div class="date-selector">
+            <label for="appointment-date">Select Date:</label>
+            <input type="date" id="appointment-date" value="2023-06-14">
+            <button id="refresh-appointments" class="btn btn-primary">Refresh</button>
+            <button id="export-appointments" class="btn btn-outline">
+              <i class="fas fa-download"></i> Export
+            </button>
+          </div>
+        </div>
+        
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>Total Appointments</h3>
+            <div class="stat-number" id="total-appointments">18</div>
+            <div class="stat-change up">+2 from yesterday</div>
+          </div>
+          <div class="stat-card">
+            <h3>Confirmed</h3>
+            <div class="stat-number" id="confirmed-appointments">14</div>
+            <div class="stat-change up">+3 from yesterday</div>
+          </div>
+          <div class="stat-card">
+            <h3>Pending</h3>
+            <div class="stat-number" id="pending-appointments">3</div>
+            <div class="stat-change down">-1 from yesterday</div>
+          </div>
+          <div class="stat-card">
+            <h3>Cancelled</h3>
+            <div class="stat-number" id="cancelled-appointments">1</div>
+            <div class="stat-change">No change</div>
+          </div>
+        </div>
+        
+        <div class="table-controls">
+          <div class="search-box">
+            <input type="text" placeholder="Search appointments..." class="search-input">
+            <button class="btn btn-primary">Search</button>
+          </div>
+          <div class="view-options">
+            <button class="btn btn-outline active" data-view="list">
+              <i class="fas fa-list"></i> List View
+            </button>
+            <button class="btn btn-outline" data-view="calendar">
+              <i class="fas fa-calendar"></i> Calendar View
+            </button>
+          </div>
+        </div>
+        
+        <div class="appointments-table-container">
+          <table class="appointments-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Department</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="appointments-body">
+              <tr>
+                <td>10:00 AM</td>
+                <td>Chou Tzuyu</td>
+                <td>Dr. Myoui</td>
+                <td>Cardiology</td>
+                <td><span class="status-badge status-confirmed">Confirmed</span></td>
+                <td>
+                  <button class="btn btn-outline view-appointment-btn" data-id="1001">View</button>
+                  <button class="btn btn-outline edit-appointment-btn" data-id="1001">Edit</button>
+                </td>
+              </tr>
+              <tr>
+                <td>11:30 AM</td>
+                <td>Son Chaeyoung</td>
+                <td>Dr. Myoui</td>
+                <td>Cardiology</td>
+                <td><span class="status-badge status-confirmed">Confirmed</span></td>
+                <td>
+                  <button class="btn btn-outline view-appointment-btn" data-id="1002">View</button>
+                  <button class="btn btn-outline edit-appointment-btn" data-id="1002">Edit</button>
+                </td>
+              </tr>
+              <tr>
+                <td>2:15 PM</td>
+                <td>Minatozaki Sana</td>
+                <td>Dr. Myoui</td>
+                <td>Cardiology</td>
+                <td><span class="status-badge status-confirmed">Confirmed</span></td>
+                <td>
+                  <button class="btn btn-outline view-appointment-btn" data-id="1003">View</button>
+                  <button class="btn btn-outline edit-appointment-btn" data-id="1003">Edit</button>
+                </td>
+              </tr>
+              <tr>
+                <td>9:00 AM</td>
+                <td>Im Nayeon</td>
+                <td>Dr. Thananusak</td>
+                <td>Dermatology</td>
+                <td><span class="status-badge status-pending">Pending</span></td>
+                <td>
+                  <button class="btn btn-outline view-appointment-btn" data-id="1004">View</button>
+                  <button class="btn btn-outline edit-appointment-btn" data-id="1004">Edit</button>
+                </td>
+              </tr>
+              <tr>
+                <td>1:00 PM</td>
+                <td>Park Jihyo</td>
+                <td>Dr. Trakulwipatkul</td>
+                <td>Neurology</td>
+                <td><span class="status-badge status-cancelled">Cancelled</span></td>
+                <td>
+                  <button class="btn btn-outline view-appointment-btn" data-id="1005">View</button>
+                  <button class="btn btn-outline edit-appointment-btn" data-id="1005">Edit</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="pagination">
+          <button class="btn btn-outline" disabled>Previous</button>
+          <span class="page-info">Page 1 of 1</span>
+          <button class="btn btn-outline" disabled>Next</button>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Doctors Management Page -->
+    <section id="doctors-management" class="page">
+      <div class="container">
+        <h1>Doctors Management</h1>
+        <div class="management-header">
+          <button class="btn btn-primary" id="add-doctor-btn">
+            <i class="fas fa-plus"></i> Add New Doctor
+          </button>
+          <div class="search-box">
+            <input type="text" placeholder="Search doctors..." class="search-input">
+            <button class="btn btn-primary">Search</button>
+          </div>
+        </div>
+        
+        <div class="doctors-grid">
+          <div class="doctor-card">
+            <div class="doctor-image">
+              <i class="fas fa-user-md"></i>
+            </div>
+            <div class="doctor-info">
+              <h3 class="doctor-name">Dr. Mina Myoui</h3>
+              <div class="doctor-specialty">Cardiology</div>
+              <div class="doctor-stats">
+                <div class="stat">
+                  <div class="stat-number">12</div>
+                  <div class="stat-label">Years Exp.</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-number">142</div>
+                  <div class="stat-label">This Month</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-number">96%</div>
+                  <div class="stat-label">Satisfaction</div>
+                </div>
+              </div>
+              <div class="doctor-actions">
+                <button class="btn btn-outline">View Profile</button>
+                <button class="btn btn-primary">Edit</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="doctor-card">
+            <div class="doctor-image">
+              <i class="fas fa-user-md"></i>
+            </div>
+            <div class="doctor-info">
+              <h3 class="doctor-name">Dr. Fahlada Thananusak</h3>
+              <div class="doctor-specialty">Dermatology</div>
+              <div class="doctor-stats">
+                <div class="stat">
+                  <div class="stat-number">8</div>
+                  <div class="stat-label">Years Exp.</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-number">87</div>
+                  <div class="stat-label">This Month</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-number">94%</div>
+                  <div class="stat-label">Satisfaction</div>
+                </div>
+              </div>
+              <div class="doctor-actions">
+                <button class="btn btn-outline">View Profile</button>
+                <button class="btn btn-primary">Edit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Patients Management Page -->
+    <section id="patients-management" class="page">
+      <div class="container">
+        <h1>Patients Management</h1>
+        <!-- Patients management content will go here -->
+      </div>
+    </section>
+    
+    <!-- Reports Page -->
+    <section id="reports" class="page">
+      <div class="container">
+        <h1>Reports</h1>
+        <!-- Reports content will go here -->
+      </div>
+    </section>
+    
+    <!-- System Settings Page -->
+    <section id="system-settings" class="page">
+      <div class="container">
+        <h1>System Settings</h1>
+        <!-- System settings content will go here -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-container">
+      &copy; 2025 Hospital. Admin Portal v1.0
+    </div>
+  </footer>
+
+  <script src="admin_script.js"></script>
+</body>
+</html>
